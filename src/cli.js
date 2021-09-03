@@ -25,5 +25,12 @@ function parseArgumentsIntoOptions(rawArgs) {
 export function cli(args) {
   let options = parseArgumentsIntoOptions(args)
   console.log(options)
+
+  process.stdin.resume();
+  process.stdin.setEncoding('utf8');
+  process.stdin.on('data', function(data) {
+    process.stdout.write(data);
+  });
+
 }
 
