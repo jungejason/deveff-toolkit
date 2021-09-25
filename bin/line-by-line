@@ -1,0 +1,11 @@
+#!/usr/bin/env node
+
+require = require('esm')(module /*, options*/);
+require('../src/cli').cli2(process.argv)
+
+const {readFileSync} = require('fs');
+const content = readFileSync('/Users/jun.ge/tmp/t.md', 'utf8').toString()
+console.log("Content:")
+const lines = content.split('\n')
+console.log(lines)
+console.log("Done.")

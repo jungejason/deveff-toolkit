@@ -34,3 +34,8 @@ export function cli(args) {
 
 }
 
+export function cli2(args) {
+  let options = parseArgumentsIntoOptions(args)
+  console.log(options)
+}
+
