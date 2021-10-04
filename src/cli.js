@@ -39,3 +39,8 @@ export function cli2(args) {
   console.log(options)
 }
 
+export function cli3(args) {
+  let options = parseArgumentsIntoOptions(args)
+  return options
+}
+

@@ -1,0 +1,28 @@
+#!/usr/bin/env node
+
+/**
+ * timestamp tool
+ */
+
+require = require('esm')(module /*, options*/);
+let options = require('../src/cli').cli3(process.argv)
+const input = options.template
+
+var date
+if (input === undefined) {
+  date = new Date()
+} else {
+  var numInput = parseInt(input)
+  date = new Date(numInput * 1000)
+}
+
+if (input === undefined) {
+  let currentTsMs = date.getTime()
+  console.log("**Current TS**")
+  console.log(currentTsMs, Math.floor(currentTsMs / 1000))
+} else {
+  console.log("**TS from input**")
+  console.log(input)
+}
+console.log("UTC: ", date)
+console.log("Local:", date.toLocaleDateString(), date.toLocaleTimeString())
