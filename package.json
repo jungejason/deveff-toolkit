@@ -15,6 +15,7 @@
   "license": "ISC",
   "bin": {
     "create-project": "bin/create-project",
+    "align-table": "bin/align-table",
     "tst": "bin/timestamp-tool",
     "line-by-line": "bin/line-by-line"
   },
