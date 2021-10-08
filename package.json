@@ -15,7 +15,7 @@
   "license": "ISC",
   "bin": {
     "create-project": "bin/create-project",
-    "tst": "bin/tst",
+    "tst": "bin/timestamp-tool",
     "line-by-line": "bin/line-by-line"
   },
   "dependencies": {
