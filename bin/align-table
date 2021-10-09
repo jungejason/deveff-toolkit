@@ -3,14 +3,49 @@
 require = require('esm')(module /*, options*/);
 require('../src/cli').cli3(process.argv)
 
+// process.stdin.resume();
+// process.stdin.setEncoding('utf8');
+// process.stdin.on('data', function(data) {
+//   process.stdout.write(data);
+// });
 
-// Read in all lines
-const {readFileSync} = require('fs');
-const content = readFileSync('/Users/jun.ge/tmp/t2.md', 'utf8').toString()
-// console.log("Content:")
-const lines = content.split('\n')
-// console.log(lines)
+function sayHello(content) {
+  // console.log("Hello " + content);
 
+  const lines = content.split('\n')
+  // console.log(lines)
+
+  doTheJob(lines)
+}
+
+function getInput() {
+  return new Promise(function (resolve, reject) {
+    const stdin = process.stdin;
+    let data = '';
+
+    stdin.setEncoding('utf8');
+    stdin.on('data', function (chunk) {
+      data += chunk;
+    });
+
+    stdin.on('end', function () {
+      resolve(data);
+    });
+
+    stdin.on('error', reject);
+  });
+}
+
+getInput().then(sayHello).catch(console.error);
+
+
+// // Read in all lines
+// const {readFileSync} = require('fs');
+// const content = readFileSync('/Users/jun.ge/tmp/t2.md', 'utf8').toString()
+// // console.log("Content:")
+// const lines = content.split('\n')
+// // console.log(lines)
+//
 // Prerequisite: Each line should start with |
 
 // Count the number of | and position each line
@@ -56,8 +91,6 @@ chunk_max => {
 | Lock Screen     | CMD + Ctrl + Q |
 
 */
-const lineCount = lines.length
-
 function parseChunks(lines) {
   const chunksForAllLines = []
   for (let ii = 0; ii < lines.length; ii++) {
@@ -72,6 +105,7 @@ function parseChunks(lines) {
     }
 
     // Filter out the last line if it's empty
+    const lineCount = lines.length
     if (!(ii === lineCount - 1 && chunks.length === 1 && chunks[0] === '')) {
       chunksForAllLines[ii] = chunks.slice(1, -1)
     }
@@ -83,59 +117,61 @@ function parseChunks(lines) {
   return chunksForAllLines
 }
 
-try {
-  const chunksForAllLines = parseChunks(lines)
+function doTheJob(lines) {
+  try {
+    const chunksForAllLines = parseChunks(lines)
 
-  // console.log("Middle.");
+    // console.log("Middle.");
 
-  for (let ii = 0; ii < chunksForAllLines.length; ii++) {
-    // console.log(ii)
-    // console.log(chunksForAllLines[ii])
-  }
-
-  let numChunksPerLine = chunksForAllLines[0].length
-  const maxLengths = []
-
-  for (let jj = 0; jj < numChunksPerLine; jj++) {
-    maxLengths[jj] = 0
-  }
-
-  for (let ii = 0; ii < chunksForAllLines.length; ii++) {
-    const chunks = chunksForAllLines[ii]
-    if (chunks.length !== numChunksPerLine) {
-      throw "Row ii doesn't have same number of |.Line: " + ii + ": " + line;
+    for (let ii = 0; ii < chunksForAllLines.length; ii++) {
+      // console.log(ii)
+      // console.log(chunksForAllLines[ii])
     }
+
+    let numChunksPerLine = chunksForAllLines[0].length
+    const maxLengths = []
 
     for (let jj = 0; jj < numChunksPerLine; jj++) {
-      maxLengths[jj] = Math.max(chunks[jj].length, maxLengths[jj])
+      maxLengths[jj] = 0
     }
-  }
 
-  // console.log(maxLengths)
+    for (let ii = 0; ii < chunksForAllLines.length; ii++) {
+      const chunks = chunksForAllLines[ii]
+      if (chunks.length !== numChunksPerLine) {
+        throw "Row ii doesn't have same number of |.Line: " + ii + ": " + line;
+      }
 
-  for (let ii = 0; ii < chunksForAllLines.length; ii++) {
-    const chunks = chunksForAllLines[ii]
-    for (let jj = 0; jj < chunks.length; jj++) {
-      chunks[jj] = chunks[jj] + " ".repeat(maxLengths[jj] - chunks[jj].length)
+      for (let jj = 0; jj < numChunksPerLine; jj++) {
+        maxLengths[jj] = Math.max(chunks[jj].length, maxLengths[jj])
+      }
     }
-    console.log(`| ${chunksForAllLines[ii].join(" | ")} |`, )
-  }
 
-} catch (e) {
-  console.error('Failed to handle the input!')
-  // TODO: return origin text when we can't handle it
-  console.error(e)
-}
-/*
-0
-[ '', 'Function', 'Key', '' ]
-1
-[ '', '--------------', '-----------------', '' ]
-2
-[ '', 'Lock Screen', 'Cmd + Ctrl + Q', '' ]
- */
+    // console.log(maxLengths)
+
+    for (let ii = 0; ii < chunksForAllLines.length; ii++) {
+      const chunks = chunksForAllLines[ii]
+      for (let jj = 0; jj < chunks.length; jj++) {
+        chunks[jj] = chunks[jj] + " ".repeat(maxLengths[jj] - chunks[jj].length)
+      }
+      console.log(`| ${chunksForAllLines[ii].join(" | ")} |`,)
+    }
+
+  } catch (e) {
+    console.error('Failed to handle the input!')
+    // TODO: return origin text when we can't handle it
+    console.error(e)
+  }
+  /*
+  0
+  [ '', 'Function', 'Key', '' ]
+  1
+  [ '', '--------------', '-----------------', '' ]
+  2
+  [ '', 'Lock Screen', 'Cmd + Ctrl + Q', '' ]
+   */
 
 // Each chunk should start with '' and end with ''
 // EAch chunk should have same length
 
 // console.log("Done.")
+}
