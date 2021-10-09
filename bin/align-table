@@ -1,15 +1,15 @@
 #!/usr/bin/env node
 
 require = require('esm')(module /*, options*/);
-require('../src/cli').cli2(process.argv)
+require('../src/cli').cli3(process.argv)
 
 
 // Read in all lines
 const {readFileSync} = require('fs');
 const content = readFileSync('/Users/jun.ge/tmp/t2.md', 'utf8').toString()
-console.log("Content:")
+// console.log("Content:")
 const lines = content.split('\n')
-console.log(lines)
+// console.log(lines)
 
 // Prerequisite: Each line should start with |
 
@@ -76,9 +76,9 @@ function parseChunks(lines) {
       chunksForAllLines[ii] = chunks.slice(1, -1)
     }
 
-    console.log(ii)
-    console.log(line)
-    console.log(chunks)
+    // console.log(ii)
+    // console.log(line)
+    // console.log(chunks)
   }
   return chunksForAllLines
 }
@@ -86,11 +86,11 @@ function parseChunks(lines) {
 try {
   const chunksForAllLines = parseChunks(lines)
 
-  console.log("Middle.");
+  // console.log("Middle.");
 
   for (let ii = 0; ii < chunksForAllLines.length; ii++) {
-    console.log(ii)
-    console.log(chunksForAllLines[ii])
+    // console.log(ii)
+    // console.log(chunksForAllLines[ii])
   }
 
   let numChunksPerLine = chunksForAllLines[0].length
@@ -111,7 +111,7 @@ try {
     }
   }
 
-  console.log(maxLengths)
+  // console.log(maxLengths)
 
   for (let ii = 0; ii < chunksForAllLines.length; ii++) {
     const chunks = chunksForAllLines[ii]
@@ -138,4 +138,4 @@ try {
 // Each chunk should start with '' and end with ''
 // EAch chunk should have same length
 
-console.log("Done.")
+// console.log("Done.")
