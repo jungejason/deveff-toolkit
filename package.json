@@ -17,6 +17,7 @@
     "create-project": "bin/create-project",
     "align-table": "bin/align-table",
     "tst": "bin/timestamp-tool",
+    "wct": "bin/count-words",
     "line-by-line": "bin/line-by-line"
   },
   "dependencies": {
