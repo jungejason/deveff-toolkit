@@ -15,7 +15,7 @@
   "license": "ISC",
   "bin": {
     "create-project": "bin/create-project",
-    "align-table": "bin/align-table",
+    "att": "bin/align-table",
     "tst": "bin/timestamp-tool",
     "wct": "bin/count-words",
     "slb": "bin/split-line-bash",
