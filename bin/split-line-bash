@@ -1,0 +1,48 @@
+#!/usr/bin/env node
+
+require = require('esm')(module /*, options*/);
+require('../src/cli').cli3(process.argv)
+
+function processLine(line) {
+  const lineResult = line.replace(/ -/g, " \\\n  -")
+  return lineResult
+}
+
+function precessLines(lines) {
+  try {
+    var processedLines = lines.map(processLine)
+
+    console.log(processedLines.join(""))
+
+  } catch (e) {
+    console.error('Failed to handle the input!')
+    // TODO: return origin text when we can't handle it
+    console.error(e)
+  }
+}
+
+function processAllText(content) {
+  const lines = content.split('\n')
+
+  precessLines(lines)
+}
+
+function getInput() {
+  return new Promise(function (resolve, reject) {
+    const stdin = process.stdin;
+    let data = '';
+
+    stdin.setEncoding('utf8');
+    stdin.on('data', function (chunk) {
+      data += chunk;
+    });
+
+    stdin.on('end', function () {
+      resolve(data);
+    });
+
+    stdin.on('error', reject);
+  });
+}
+
+getInput().then(processAllText).catch(console.error);

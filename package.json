@@ -18,6 +18,7 @@
     "align-table": "bin/align-table",
     "tst": "bin/timestamp-tool",
     "wct": "bin/count-words",
+    "slb": "bin/split-line-bash",
     "line-by-line": "bin/line-by-line"
   },
   "dependencies": {
