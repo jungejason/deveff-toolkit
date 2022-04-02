@@ -1,6 +1,9 @@
 # Toolkit
 
-A toolket for various tasks.
+**WARNING: This project is in its veryh early stage. Use at your own risk.**
+
+A toolkit for various tasks, mostly text processing for now. It's very basic right now as of 2022-04-01, but it does
+provide some functionality for myself.
 
 ## Install a new command
 Add and entry in package.json
