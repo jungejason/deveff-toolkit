@@ -1,10 +1,16 @@
 #!/usr/bin/env node
 
 require = require('esm')(module /*, options*/);
-require('../src/cli').cli2(process.argv)
+let clis = require('../src/cli')
+const options = clis.cli3(process.argv)
+console.log(options)
 
-const {readFileSync} = require('fs');
-const content = readFileSync('/Users/jun.ge/tmp/t.md', 'utf8').toString()
+const {readFileSync} = require('fs')
+const path = require('path')
+const fileName = options.template
+console.log("template", fileName)
+
+const content = readFileSync(path.resolve(process.cwd(), fileName), 'utf8').toString()
 console.log("Content:")
 const lines = content.split('\n')
 console.log(lines)

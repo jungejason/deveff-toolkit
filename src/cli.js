@@ -31,16 +31,9 @@ export function cli(args) {
   process.stdin.on('data', function(data) {
     process.stdout.write(data);
   });
-
-}
-
-export function cli2(args) {
-  let options = parseArgumentsIntoOptions(args)
-  console.log(options)
 }
 
 export function cli3(args) {
-  let options = parseArgumentsIntoOptions(args)
-  return options
+  return parseArgumentsIntoOptions(args)
 }
 
