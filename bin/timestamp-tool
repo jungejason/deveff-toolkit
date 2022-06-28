@@ -8,12 +8,19 @@ require = require('esm')(module /*, options*/);
 let options = require('../src/cli').cli3(process.argv)
 const input = options.template
 
-var date
+let date
+let isMs
 if (input === undefined) {
   date = new Date()
 } else {
   var numInput = parseInt(input)
-  date = new Date(numInput * 1000)
+  if (numInput < 9999999999) {
+    isMs = false
+    numInput *= 1000
+  } else {
+    isMs = true
+  }
+  date = new Date(numInput)
 }
 
 if (input === undefined) {
@@ -23,6 +30,7 @@ if (input === undefined) {
 } else {
   console.log("**TS from input**")
   console.log(input)
+  console.log("Guessing it's " + (isMs ? "Milliseconds" : "Seconds"))
 }
 console.log("UTC: ", date)
 console.log("Local:", date.toLocaleDateString(), date.toLocaleTimeString())
