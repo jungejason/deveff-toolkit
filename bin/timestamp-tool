@@ -34,3 +34,22 @@ if (input === undefined) {
 }
 console.log("UTC: ", date)
 console.log("Local:", date.toLocaleDateString(), date.toLocaleTimeString())
+
+dtMinusHalfDay = 3
+
+const localeDateTimeWithDelta = function (baseDate, deltaHours) {
+  const msHour = 60 * 60 * 1000
+  const resultDate = new Date(baseDate.getTime() + deltaHours * msHour)
+  return resultDate.toLocaleDateString() + " " + resultDate.toLocaleTimeString()
+}
+
+console.log("Local time half day ago:")
+console.log(localeDateTimeWithDelta(date, -12))
+console.log("Local time half day later:")
+console.log(localeDateTimeWithDelta(date, 12))
+
+console.log("Local time three hour go:")
+console.log(localeDateTimeWithDelta(date, -3))
+console.log("Local time three hour later:")
+console.log(localeDateTimeWithDelta(date, 3))
+// 06/09/2022 1:29:05 PM to 06/09/2022 1:49:05 PM
