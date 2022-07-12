@@ -1,5 +1,5 @@
 {
-  "name": "defeff-toolkit",
+  "name": "deveff-toolkit",
   "version": "0.8.0",
   "description": "A tool set",
   "main": "./src/index.js",
