@@ -1,6 +1,6 @@
 {
   "name": "defeff-toolkit",
-  "version": "1.0.0",
+  "version": "0.8.0",
   "description": "A tool set",
   "main": "./src/index.js",
   "scripts": {
@@ -9,10 +9,16 @@
   "keywords": [
     "text",
     "cli",
+    "developer",
     "tool"
   ],
-  "author": "Jason (Jun)",
-  "license": "ISC",
+  "homepage": "https://github.com/jungejason/deveff-toolkit",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:jungejason/deveff-toolkit.git"
+  },
+  "author": "Jason (Jun) Ge",
+  "license": "MIT",
   "bin": {
     "create-project": "bin/create-project",
     "att": "bin/align-table",

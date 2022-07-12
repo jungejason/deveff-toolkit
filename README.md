@@ -1,9 +1,10 @@
-# Toolkit
+# Developer Effectiveness Toolkit
 
-**WARNING: This project is in its very early stage. Use at your own risk.**
+**WARNING: This project is in its early stage. Use at your own risk.**
 
-A toolkit for various tasks, mostly text processing for now. It's very basic right now as of 2022-04-01, but it does
-provide some functionality for myself.
+A cli tool for various tasks to improve developer effectiveness. It includes the following areas:
+* text processing 
+* timestamp processing
 
 ## Install a new command
 Add and entry in package.json
