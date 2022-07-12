@@ -20,12 +20,7 @@
   "author": "Jason (Jun) Ge",
   "license": "MIT",
   "bin": {
-    "create-project": "bin/create-project",
-    "att": "bin/align-table",
-    "tst": "bin/timestamp-tool",
-    "wct": "bin/count-words",
-    "slb": "bin/split-line-bash",
-    "line-by-line": "bin/line-by-line"
+    "tst": "bin/timestamp-tool"
   },
   "dependencies": {
     "arg": "^5.0.0",
