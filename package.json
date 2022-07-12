@@ -2,7 +2,7 @@
   "name": "deveff-toolkit",
   "version": "0.8.0",
   "description": "A tool set",
-  "main": "./src/index.js",
+  "main": "src/index.mjs",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
@@ -20,7 +20,7 @@
   "author": "Jason (Jun) Ge",
   "license": "MIT",
   "bin": {
-    "tst": "bin/timestamp-tool"
+    "tst": "bin/timestamp-tool.mjs"
   },
   "dependencies": {
     "arg": "^5.0.0",

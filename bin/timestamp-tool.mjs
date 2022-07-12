@@ -1,11 +1,12 @@
 #!/usr/bin/env node
+import {cli3} from "../src/cli.mjs"
 
 /**
  * timestamp tool
  */
 
-require = require('esm')(module /*, options*/);
-let options = require('../src/cli').cli3(process.argv)
+// let options = require('../src/cli.mjs').cli3(process.argv)
+let options = cli3(process.argv)
 const input = options.template
 
 let date
@@ -34,8 +35,6 @@ if (input === undefined) {
 }
 console.log("UTC: ", date)
 console.log("Local:", date.toLocaleDateString(), date.toLocaleTimeString())
-
-dtMinusHalfDay = 3
 
 const localeDateTimeWithDelta = function (baseDate, deltaHours) {
   const msHour = 60 * 60 * 1000
