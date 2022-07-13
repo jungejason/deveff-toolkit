@@ -1,5 +1,4 @@
 import arg from 'arg'
-// const arg = require('arg')
 
 function parseArgumentsIntoOptions(rawArgs) {
   const args = arg(
