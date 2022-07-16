@@ -21,6 +21,7 @@
   "license": "MIT",
   "bin": {
     "tst": "bin/timestamp-tool.mjs",
+    "att": "bin/align-table.mjs",
     "flf": "bin/fraction-lowest-forms.mjs"
   },
   "dependencies": {
