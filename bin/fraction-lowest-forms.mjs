@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+import { program } from "commander"
+
 const reduce_fraction = function (numerator, denominator) {
   // handle spectial cases like
   // * one is 1
@@ -23,15 +25,28 @@ const reduce_fraction = function (numerator, denominator) {
   }
 }
 
-if (process.argv.length !== 4) {
-  console.error("The program expects two arguments")
+let numerator
+let denominator
+
+program.usage('<numerator> <denominator>')
+  .description('Prints the lowest forms of a fraction.')
+  .action(function (a, b) {
+    numerator = a
+    denominator = b
+  })
+  .arguments('<numerator> <denominator>')
+  .parse(process.argv)
+
+numerator = parseInt(numerator)
+if (isNaN(numerator)) {
+  console.log('numerator must be a number')
   process.exit(1)
 }
-
-let numerator = process.argv[2]
-let denominator = process.argv[3]
-numerator = parseInt(numerator)
 denominator = parseInt(denominator)
+if (isNaN(denominator)) {
+  console.log('denominator must be a number')
+  process.exit(1)
+}
 
 let {top, bottom} = reduce_fraction(numerator, denominator)
 console.log(`Result: ${top}, ${bottom}`)
