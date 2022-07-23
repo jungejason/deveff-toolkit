@@ -22,6 +22,7 @@
   "bin": {
     "tst": "bin/timestamp-tool.mjs",
     "att": "bin/align-table.mjs",
+    "cnt": "bin/convert-number.mjs",
     "flf": "bin/fraction-lowest-forms.mjs"
   },
   "dependencies": {
